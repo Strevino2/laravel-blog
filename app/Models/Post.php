@@ -9,8 +9,6 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
     protected $with = ['category', 'author'];
 
 //    protected $fillable = ['title', 'excerpt', 'body', 'id'];
@@ -40,6 +38,11 @@ class Post extends Model
                 ->where('username', $author))
         );
 
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function category()
